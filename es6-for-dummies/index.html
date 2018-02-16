@@ -118,14 +118,14 @@
       <li>Block scope variables (let, const)</li>
       <li>Template Literals</li>
       <li>Destructuring Assignment</li>
-      <li>Spread operator</li>
+      <li>Arrow functions</li>
       <li>Классы и объекты</li>
       <li>Наследование</li>
       <li>Native Promises</li>
-      <li>Arrow functions</li>
       <li>For…of</li>
       <li>Default parameters</li>
       <li>Rest-параметры</li>
+      <li>Spread operator</li>
     </ul>
   </section>
 
@@ -231,12 +231,6 @@
     </pre>
   </section>
 
-  <div class="select">
-    <select name="name" id="name">
-      <option value="value">text</option>
-    </select>
-  </div>
-
   <section class="slide">
     <h2>Multiline</h2>
     <pre>
@@ -328,16 +322,218 @@
     </pre>
   </section>
 
-  <!-- <section class="slide">
-    <h2>
+  <section class="slide">
+    <h2>Стрелочные функции</h2>
+    <pre>
+        <code class="language-javascript">
+          // this will reference the outer one
+          $('.btn').click((event) =>  this.sendData());
+  
+          // implicit returns
+          const ids = [291, 288, 984];
+          const messages = ids.map(value => `ID is ${value}`);
+        </code>
+      </pre>
+  </section>
 
+  <section class="slide">
+    <h2>Классы</h2>
+    <pre>
+        <code class="language-javascript">
+          var Animal = (function () {
+            function MyConstructor(name) {
+              this.name = name;
+            }
+            MyConstructor.prototype.speak = function speak() {
+              console.log(this.name + ' makes a noise.');
+            };
+            return MyConstructor;
+          })();
+
+          var animal = new Animal('animal');
+          animal.speak(); // animal makes a noise.
+        </code>
+      </pre>
+  </section>
+
+  <section class="slide">
+    <h2>Классы</h2>
+    <pre>
+      <code class="language-javascript">
+        class Animal {
+          constructor(name) {
+            this.name = name;
+          }
+          speak() {
+            console.log(this.name + ' makes a noise.');
+          }
+        }
+
+        const animal = new Animal('animal');
+        animal.speak(); // animal makes a noise.
+      </code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>Геттеры и сеттеры</h2>
+    <pre>
+      <code class="language-javascript">
+        class User {
+          constructor(firstName, lastName) {
+            this.firstName = firstName;
+            this.lastName = lastName;
+          }
+          get fullName() {
+            return `${this.firstName} ${this.lastName}`;
+          }
+          set fullName(newValue) {
+            [this.firstName, this.lastName] = newValue.split(' ');
+          }
+        }
+      </code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>Наследование</h2>
+    <pre>
+      <code class="language-javascript">
+        class Lion extends Animal {
+          speak() {
+            super.speak();
+            console.log(this.name + ' roars ');
+          }
+        }
+
+        const lion = new Lion('Simba');
+        lion.speak(); // Simba makes a noise.
+        // Simba roars.
+      </code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>Советы</h2>
+    <ul>
+      <li>Всегда используйте синтаксис class и не изменяйте prototype напрямую. Код будет лаконичнее и его будет легче понять.</li>
+      <li>Избегайте создания пустого конструктора. У классов есть конструктор по умолчанию если не задать собственный.</li>
+      <li>Используйте встроенный способ наследования – extends.</li>
+      </li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h2>Callback hell</h2>
+    <pre>
+      <code class="language-javascript">
+        function printAfterTimeout(string, timeout, done){
+          setTimeout(function(){ done(string); }, timeout);
+        }
+
+        printAfterTimeout('Hello ', 2e3, function(result){
+          console.log(result);
+          // nested callback
+          printAfterTimeout(result + 'Reader', 2e3, function(result){
+            console.log(result);
+          });
+        });
+      </code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>Нативные промисы</h2>
+    <pre>
+      <code class="language-javascript">
+        function printAfterTimeout(string, timeout){
+          return new Promise((resolve, reject) => {
+            setTimeout(function(){ resolve(string); }, timeout);
+          });
+        }
+        
+        printAfterTimeout('Hello ', 2e3).then((result) => {
+          console.log(result);
+          return printAfterTimeout(result + 'Reader', 2e3);
+        }).then((result) => {
+          console.log(result);
+        });
+      </code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>
+      <code>For…of</code>
     </h2>
+    <p>ES6
+      <code>for…of</code> позволяет использовать итераторы</p>
+    <pre>
+      <code class="language-javascript">
+        // массив — пример итерируемого объекта
+        let arr = [1, 2, 3]; 
+
+        for (let value of arr) {
+          alert(value); // 1, затем 2, затем 3
+        }
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Параметры по умолчанию</h2>
+    <pre>
+      <code class="language-javascript">
+        function point(x = 0, y = -1, isFlag = true){
+          console.log(x,y, isFlag);
+        }
+      </code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>Spread operator</h2>
+    <pre>
+        <code class="language-javascript">
+           Math.max.apply(Math, [2,100,1,6,43]) // 100
+           Math.max(...[2,100,1,6,43]) // 100
+  
+           console.log([...array1, ...array2, ...array3]);
+           console.log({...object1, ...object2, ...object3});
+        </code>
+      </pre>
+  </section>
+
+  <section class="slide">
+    <h2>Rest-параметры</h2>
+    <pre>
+      <code class="language-javascript">
+        function printf(format) {
+          var params = [].slice.call(arguments, 1);
+          console.log('params: ', params);
+          console.log('format: ', format);
+        }
+
+        function printf(format, ...params) {
+          console.log('params: ', params);
+          console.log('format: ', format);
+        }
+      </code>
+    </pre>
+  </section>
+
+
+  <!-- section.slide>h2+pre>code.language-javascript -->
+
+  <!--
+  <section class="slide">
+    <h2></h2>
     <pre>
         <code class="language-javascript">
   
         </code>
       </pre>
-  </section> -->
+  </section>
+  -->
   <!-- pre>code.language-javascript -->
   <!-- section.slide>h2{} -->
 
