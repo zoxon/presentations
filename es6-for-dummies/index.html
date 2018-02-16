@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Shower Presentation Engine</title>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="shower/themes/ribbon/styles/screen-4x3.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.11.0/themes/prism.min.css" integrity="sha256-DJJDQyzflMYiUb2jX3gilm9m3gAkHPC4WLv9BAk4rTE="
+    crossorigin="anonymous" />
+  <style>
+    .main {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .main__title {
+      flex: 1;
+      text-align: center;
+      font-size: 4em !important;
+      margin-top: -10%;
+    }
+
+    .footer {
+      font-size: .6em;
+      color: #3c3d40;
+      text-shadow: 0 1px 0 #8d8e90;
+    }
+
+    figure img {
+      max-width: 100%;
+      margin: 1em 0;
+    }
+
+    figure figcaption {
+      font-size: 0.8em;
+    }
+
+    .image-link {
+      background: none !important;
+      display: inline-block;
+    }
+
+    .image-link img {
+      max-width: 20vw;
+    }
+
+    .slide pre code {
+      line-height: 1.6;
+      font-family: Consolas, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier, monospace;
+      /* background: #efeff0; */
+    }
+
+    pre[class*=language-] {
+      background: none !important;
+      padding: 0 !important;
+      overflow: initial !important;
+    }
+  </style>
+</head>
+
+<body class="shower list">
+
+  <header class="caption">
+    <h1>ES6 для чайников</h1>
+    <p>Обзор базовых возможностей ES6</p>
+  </header>
+
+  <section class="slide main">
+    <h2 class="main__title">👶 ES6 для чайников</h2>
+  </section>
+
+  <section class="slide">
+    <h2>История</h2>
+    <figure>
+      <img src="images/history-javascript-evolution-es6.png" alt="История развития JavaScript">
+      <figcaption>Хронология развития JavaScript</figcaption>
+    </figure>
+  </section>
+
+  <section class="slide">
+    <h2>Поддержка браузерами</h2>
+    <figure>
+      <figcaption>
+        Источник:
+        <a href="https://kangax.github.io/compat-table/es6/">
+          https://kangax.github.io/compat-table/es6/
+        </a>
+      </figcaption>
+      <img src="images/es6-javascript-support.png" alt="Поддержка браузерами JavaScript">
+    </figure>
+  </section>
+
+  <section class="slide">
+    <h2>Транспалинг</h2>
+    <p>
+      <a class="image-link" href="https://babeljs.io/" target="_blank">
+        <img src="images/babel.svg" alt="Babel">
+      </a>
+    </p>
+    <p>
+      <b>Babel.JS</b> – это транспайлер, переписывающий код на ES6 в код на предыдущем стандарте ES5
+    </p>
+    <p>Он состоит из двух частей:</p>
+    <ol>
+      <li>Транспайлер, который переписывает код</li>
+      <li>Полифилл, который добавляет методы
+        <code>Array.from</code>,
+        <code>String.prototype.repeat</code> и другие</li>
+    </ol>
+  </section>
+
+  <section class="slide">
+    <h2>Главные возможности ES6</h2>
+    <ul class="double">
+      <li>Block scope variables (let, const)</li>
+      <li>Template Literals</li>
+      <li>Destructuring Assignment</li>
+      <li>Spread operator</li>
+      <li>Классы и объекты</li>
+      <li>Наследование</li>
+      <li>Native Promises</li>
+      <li>Arrow functions</li>
+      <li>For…of</li>
+      <li>Default parameters</li>
+      <li>Rest-параметры</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h2>Стреляем по ногам вместе с
+      <code>var</code>
+    </h2>
+    <ul>
+      <li>Переменные var существуют и до объявления. Они равны
+        <code>undefined</code>
+      </li>
+      <li>Переменная, объявленная через var, видна везде в функции</li>
+      <li>Можно повторно объявить</li>
+      <li>Протекает в
+        <code>for</code>,
+        <code>while</code> и
+        <code>if</code>
+      </li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h2>Block scope variables</h2>
+    <pre>
+      <code class="language-javascript">
+        var x = "outer";
+        function test(inner) {
+          if (inner) {
+            var x = "inner"; // scope whole function
+            return x;
+          }
+          return x; // gets redefined on line 4
+        }
+        
+        test(false); // undefined
+        test(true); // inner
+      </code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>Царские
+      <code>let</code> и
+      <code>const</code>
+    </h2>
+    <ul>
+      <li>
+        Область видимости
+        <code>let</code> и
+        <code>const</code> – блок
+        <code>{...}</code>
+      </li>
+      <li>
+        Видны только после объявления
+      </li>
+      <li>Нельзя повторно объявлять</li>
+      <li>При использовании в цикле, для каждой итерации создаётся своя переменная</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h2>Итог</h2>
+    <ul>
+      <li>Забудьте
+        <code>var</code>, используйте
+        <code>let</code> и
+        <code>const</code>.</li>
+      <li>Используйте const для всех переменных, не используйте var</li>
+      <li>Если переменную нужно переобъявить используйте
+        <code>let</code> вместо
+        <code>const</code>
+      </li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h2>Block scope variables</h2>
+    <pre>
+      <code class="language-javascript">
+        (function(){ 
+          var private = 1;
+        })();
+
+        {
+          let private = 2;
+        }
+
+        console.log(private); // Uncaught ReferenceError
+      </code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>Template Literals</h2>
+    <pre>
+      <code class="language-javascript">
+        const first = "John";
+        const last = "Doe";
+
+        console.log("Your name is " + first + " " + last + ".");
+        console.log(`Your name is ${first} ${last}.`);
+      </code>
+    </pre>
+  </section>
+
+  <div class="select">
+    <select name="name" id="name">
+      <option value="value">text</option>
+    </select>
+  </div>
+
+  <section class="slide">
+    <h2>Multiline</h2>
+    <pre>
+      <code class="language-javascript">
+        const template =
+          "&lt;div class=\"select\"&gt;\n" + 
+          "  &lt;label for=\"select\"&gt;" + label + "&lt;label&gt;"
+          "  &lt;select name=\"select\" id=\"select\"&gt;\n" +
+          "    &lt;option value=\"value\"&gt;text&lt;/option&gt;\n" +
+          "  &lt;/select&gt;\n" +
+          "&lt;/div&gt;";
+
+      const style = 
+        "height: "+ height + "px;" +
+        "width: "+ width + "px;" +
+        "padding: 15px 6px 0;";
+      </code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>Multiline</h2>
+    <pre>
+      <code class="language-javascript">
+        const template =
+          `&lt;div class="select"&gt;
+            &lt;label for="select"&gt;${label}&lt;label&gt;
+            &lt;select name="select" id="select"&gt;
+              &lt;option value="value"&gt;text&lt;/option&gt;
+            &lt;/select&gt;
+          &lt;/div&gt;`;
+
+        const style = 
+          `height: ${height}px;
+          width: ${width}px;
+          padding: 15px 6px 0;`;
+      </code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>Destructuring Assignment</h2>
+    <p>
+      <b>Деструктуризация (destructuring assignment)</b> – это особый синтаксис присваивания, при котором можно присвоить массив
+      или объект сразу нескольким переменным, разбив его на части.</p>
+    <pre>
+      <code class="language-javascript">
+        const [firstName, lastName] = ["John", "Doe"];
+      
+        const { firstName, lastName } = { 
+          firstName: "John",
+          lastName: "Doe"
+        };
+      </code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>Примеры использования деструктуризации</h2>
+    <pre>
+      <code class="language-javascript">
+        function getFullName({ firstName, lastName }) {
+          return `${firstName} ${lastName}`;
+        }
+
+        users.map(
+          function({ firstName, lastName }) {
+            return getFullName({ firstName, lastName });
+          }
+        )
+      </code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>Глубокое сопоставление</h2>
+    <pre>
+      <code class="language-javascript">
+        const settings = {
+          display: { color: "red" },
+          keyboard: { layout: "querty" }
+        };
+
+        const {
+          display: { color: displayColor },
+          keyboard: { layout: keyboardLayout }
+        } = settings;
+      </code>
+    </pre>
+  </section>
+
+  <!-- <section class="slide">
+    <h2>
+
+    </h2>
+    <pre>
+        <code class="language-javascript">
+  
+        </code>
+      </pre>
+  </section> -->
+  <!-- pre>code.language-javascript -->
+  <!-- section.slide>h2{} -->
+
+  <section class="slide">
+    <h2>Ссылки</h2>
+    <ul>
+      <li>
+        <a href="https://babeljs.io/">Babel.js</a>
+      </li>
+      <li>
+        <a href="https://learn.javascript.ru/es-modern">Современные возможности ES-2015</a>
+      </li>
+      <li>
+        <a href="https://habrahabr.ru/post/313526/">Обзор базовых возможностей ES6</a>
+      </li>
+      <li>
+        <a href="https://engineering.haus.com/dumb-es6-tricks-53ecadd1b29f">Stupid ES6 tricks</a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="slide" id="see-more">
+    <h2 class="shout">
+      <a href="https://zoxon.bitbucket.org/presentations/es6fd">goo.gl/es6fd</a>
+    </h2>
+    <style>
+      #see-more h2 {
+        font-size: 100px
+      }
+
+      #see-more img {
+        width: 0.72em;
+        height: 0.72em;
+      }
+    </style>
+  </section>
+
+  <div class="progress"></div>
+
+  <script src="shower/shower.min.js"></script>
+  <script>
+    // Run Button
+    const runButton = (elements, _options) => {
+      const defaults = {
+        buttonClassName: "run-button",
+        buttonText: "Выполнить код"
+      }
+      const options = Object.assign({}, defaults, _options);
+
+      [].forEach.call(elements, element => {
+        const code = element.innerText;
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = options.buttonClassName;
+        button.innerText = options.buttonText;
+        element.parentNode.insertBefore(button, element);
+        button.addEventListener("click", () => {
+          console.log("Running\n---\n" + code + "\n---\nResult:");
+          eval(code);
+        });
+      });
+    };
+
+    // const pre = document.querySelectorAll('pre[data-lang="javascript"]');
+    // runButton(pre);
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.11.0/prism.min.js" integrity="sha256-OyQW1t8DXfIOHVumLRBlVZrqfrPJSvmISfXVBGo7niE="
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.11.0/plugins/line-numbers/prism-line-numbers.min.js" integrity="sha256-JfF9MVfGdRUxzT4pecjOZq6B+F5EylLQLwcQNg+6+Qk="
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.11.0/components/prism-javascript.min.js" integrity="sha256-tLhIAW/D2zypVjXCB31wyVYzDzNzxbGmymQKKTT7P8c="
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.11.0/plugins/highlight-keywords/prism-highlight-keywords.min.js"
+    integrity="sha256-b9CfTkBOR/bKW8Z/tyMfVQaQE0/kU/7NH3quYmbx5m0=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.11.0/plugins/normalize-whitespace/prism-normalize-whitespace.min.js"
+    integrity="sha256-31Ef0tfMJHz4mcBYno6PKR2Iz5qPHPJLxIzej2AGl6c=" crossorigin="anonymous"></script>
+
+  <script>
+    Prism.plugins.NormalizeWhitespace.setDefaults({
+      'remove-trailing': true,
+      'remove-indent': true,
+      'left-trim': true,
+      'right-trim': true,
+      /*'break-lines': 80,
+      'indent': 2,
+      'remove-initial-line-feed': false,
+      'tabs-to-spaces': 4,
+      'spaces-to-tabs': 4*/
+    });
+  </script>
+  <!-- Copyright © 2018 Velichko Konstantin. -->
+</body>
+
+</html>
