@@ -130,6 +130,19 @@
   </section>
 
   <section class="slide">
+    <h2>Важно!</h2>
+    <p>Весь код ниже должен выполнятся в строгом режиме.</p>
+    <p>Это значит нужно использовать директиву
+      <code>"use strict";</code>
+    </p>
+    <p>
+      <b>Babel</b> поставит поставит директиву сам</p>
+    <p>Подробнее:
+      <a href="https://learn.javascript.ru/strict-mode" target="_blank">Директива use strict</a>
+    </p>
+  </section>
+
+  <section class="slide">
     <h2>Стреляем по ногам вместе с
       <code>var</code>
     </h2>
@@ -219,7 +232,7 @@
   </section>
 
   <section class="slide">
-    <h2>Template Literals</h2>
+    <h2>Шаблонные строки (Template Literals)</h2>
     <pre>
       <code class="language-javascript">
         const first = "John";
@@ -232,16 +245,16 @@
   </section>
 
   <section class="slide">
-    <h2>Multiline</h2>
+    <h2>Многострочные шаблоны ES5</h2>
     <pre>
       <code class="language-javascript">
         const template =
-          "&lt;div class=\"select\"&gt;\n" + 
-          "  &lt;label for=\"select\"&gt;" + label + "&lt;label&gt;"
-          "  &lt;select name=\"select\" id=\"select\"&gt;\n" +
-          "    &lt;option value=\"value\"&gt;text&lt;/option&gt;\n" +
-          "  &lt;/select&gt;\n" +
-          "&lt;/div&gt;";
+        "&lt;div class=\"select\"&gt;\n" + 
+        "  &lt;label for=\"select\"&gt;" + label + "&lt;label&gt;"
+        "  &lt;select name=\"select\" id=\"select\"&gt;\n" +
+        "    &lt;option value=\"value\"&gt;text&lt;/option&gt;\n" +
+        "  &lt;/select&gt;\n" +
+        "&lt;/div&gt;";
 
       const style = 
         "height: "+ height + "px;" +
@@ -252,7 +265,7 @@
   </section>
 
   <section class="slide">
-    <h2>Multiline</h2>
+    <h2>Многострочные шаблоны ES6</h2>
     <pre>
       <code class="language-javascript">
         const template =
@@ -263,19 +276,20 @@
             &lt;/select&gt;
           &lt;/div&gt;`;
 
-        const style = 
-          `height: ${height}px;
+        const style = `
+          height: ${height}px;
           width: ${width}px;
-          padding: 15px 6px 0;`;
+          padding: 15px 6px 0;
+        `;
       </code>
     </pre>
   </section>
 
   <section class="slide">
-    <h2>Destructuring Assignment</h2>
+    <h2>Деструктуризация (Destructuring Assignment)</h2>
     <p>
-      <b>Деструктуризация (destructuring assignment)</b> – это особый синтаксис присваивания, при котором можно присвоить массив
-      или объект сразу нескольким переменным, разбив его на части.</p>
+      <b>Деструктуризация</b> – это особый синтаксис присваивания, при котором можно присвоить массив или объект сразу нескольким
+      переменным, разбив его на части.</p>
     <pre>
       <code class="language-javascript">
         const [firstName, lastName] = ["John", "Doe"];
@@ -325,15 +339,35 @@
   <section class="slide">
     <h2>Стрелочные функции</h2>
     <pre>
-        <code class="language-javascript">
-          // this will reference the outer one
-          $('.btn').click((event) =>  this.sendData());
-  
-          // implicit returns
-          const ids = [291, 288, 984];
-          const messages = ids.map(value => `ID is ${value}`);
-        </code>
-      </pre>
+      <code class="language-javascript">
+        button.addEventListener('click', (event) => {
+          this.sendData(); // ?
+        });
+
+        // implicit returns
+        const ids = [291, 288, 984];
+        const messages = ids.map(value => `ID is ${value}`);
+        
+        const getFullName = ({ firstName, lastName }) =>
+          `${firstName} ${lastName}`;
+      </code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>Стрелочные функции</h2>
+    <pre>
+      <code class="language-javascript">
+        const zeroArgs = () => {/* ... */}
+        const zeroWithUnderscore = _ => {/* ... */}
+        const oneArg = arg1 => {/* ... */}
+        const oneArgWithParenthesis = (arg1) => {/* ... */}
+        const manyArgs = (arg1, arg2) => {/* ... */}
+        const oneArgWithDestriction = ({ one, two }) => {/* ... */}
+        const returnData = (a, b) => a + b;
+        const notReturn = () => { someFinction(); }
+      </code>
+    </pre>
   </section>
 
   <section class="slide">
@@ -464,10 +498,10 @@
 
   <section class="slide">
     <h2>
-      <code>For…of</code>
+      <code>For...of</code>
     </h2>
     <p>ES6
-      <code>for…of</code> позволяет использовать итераторы</p>
+      <code>for...of</code> позволяет использовать итераторы</p>
     <pre>
       <code class="language-javascript">
         // массив — пример итерируемого объекта
@@ -479,8 +513,9 @@
       </code>
     </pre>
   </section>
+
   <section class="slide">
-    <h2>Параметры по умолчанию</h2>
+    <h2>Параметры по умолчанию (Default parameters)</h2>
     <pre>
       <code class="language-javascript">
         function point(x = 0, y = -1, isFlag = true){
@@ -493,14 +528,14 @@
   <section class="slide">
     <h2>Spread operator</h2>
     <pre>
-        <code class="language-javascript">
-           Math.max.apply(Math, [2,100,1,6,43]) // 100
-           Math.max(...[2,100,1,6,43]) // 100
-  
-           console.log([...array1, ...array2, ...array3]);
-           console.log({...object1, ...object2, ...object3});
-        </code>
-      </pre>
+      <code class="language-javascript">
+        Math.max.apply(Math, [2,100,1,6,43]) // 100
+        Math.max(...[2,100,1,6,43]) // 100
+
+        console.log([...array1, ...array2, ...array3]);
+        console.log({...object1, ...object2, ...object3});
+      </code>
+    </pre>
   </section>
 
   <section class="slide">
@@ -521,6 +556,164 @@
     </pre>
   </section>
 
+  <section class="slide">
+    <h2>Расширенные литералы объектов</h2>
+    <pre>
+      <code class="language-javascript">
+        const name = "John";
+        const user = {
+          name,
+          hello(name) {
+            return `Hello ${name}`;
+          },
+          [`user_${name}`.toUpperCase()]: "",
+        };
+      </code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>
+      <code>Object.assign()</code>
+    </h2>
+    <p>Функция
+      <code>Object.assign</code> получает список объектов и копирует в первый target свойства из остальных.</p>
+    <pre>
+      <code class="language-javascript">
+        const original = [0, 1, 2, 3];
+        const clone = Object.assign([], original, { 2: 42 }); 
+        // [0, 1, 42, 3]
+
+        const user = { name: "John" };
+        const visitor = { isAdmin: false, visits: true };
+        const admin = { isAdmin: true };
+
+        const newUser = Object.assign(user, visitor, admin);
+      </code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>
+      <code>Object.keys()</code>
+    </h2>
+    <pre>
+      <code class="language-javascript">
+        var arr = ["a", "b", "c"];
+        console.log(Object.keys(arr)); // ["0", "1", "2"]
+
+        var anObj = { 100: "a", 2: "b", three: "c" };
+        console.log(Object.keys(anObj)); // ["2", "100", "three"]
+      </code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>
+      <code>Array.map()</code>
+    </h2>
+    <p>Используется для трансформации массива</p>
+    <pre>
+        <code class="language-javascript">
+          const numbers = [1, 4, 9];
+          const roots = numbers.map(Math.sqrt); // [1, 4, 9]
+          const doubles = numbers.map(function(num) {
+            return num * 2;
+          });
+          // doubles = [2, 8, 18]
+        </code>
+      </pre>
+  </section>
+
+  <section class="slide">
+    <h2>
+      <code>Array.from()</code>
+    </h2>
+    <p>Создаёт новый экземпляр Array из массивоподобного или итерируемого объекта</p>
+    <pre>
+        <code class="language-javascript">
+          const itemElements = document.querySelectorAll('.items');
+          const items = Array.from(itemElements);
+
+          items.forEach(function(element) {
+              console.log(element.nodeType)
+          });
+        </code>
+      </pre>
+  </section>
+
+  <section class="slide">
+    <h2>
+      <code>Array.filter()</code>
+    </h2>
+    <p>Используется для фильтрации массива через функцию</p>
+    <pre>
+        <code class="language-javascript">
+          function isBigEnough(value) {
+            return value >= 10;
+          }
+          
+          const filtered = [12, 5, 8, 130, 44].filter(isBigEnough);
+          // [12, 130, 44]
+        </code>
+      </pre>
+  </section>
+
+  <section class="slide">
+    <h2>
+      <code>Array.reduce()</code>
+    </h2>
+    <p>Используется для последовательной обработки каждого элемента массива с сохранением промежуточного результата</p>
+    <pre>
+        <code class="language-javascript">
+          const arr = [0, 1, 2, 3, 4];
+          const total = arr.reduce(
+            (previousValue, currentValue, index, array) => {
+              return previousValue + currentValue;
+            }); 
+          // total = 10
+        </code>
+      </pre>
+  </section>
+
+  <section class="slide">
+    <h2>Другие полезные методы Array</h2>
+    <ul>
+      <li>
+        <code>Array.prototype.find</code>
+      </li>
+      <li>
+        <code>Array.prototype.values</code>
+      </li>
+      <li>
+        <code>Array.prototype.entries</code>
+      </li>
+      <li>
+        <code>Array.prototype.fill</code>
+      </li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h2>Fetch API</h2>
+    <p>
+      <a href="https://github.com/github/fetch" target="_blank">Полифилл whatwg-fetch</a>
+    </p>
+    <pre>
+      <code class="language-javascript">
+        const newUser = fetch("/users", {
+          method: "POST",
+          headers,
+          body: JSON.stringify({ name, login })
+        })
+        .then(checkStatus)
+        .then(response => response.json())
+        .then(json => console.log(json))
+        .catch(error => console.log("Request failed", error));
+      </code>
+    </pre>
+  </section>
+
 
   <!-- section.slide>h2+pre>code.language-javascript -->
 
@@ -534,8 +727,6 @@
       </pre>
   </section>
   -->
-  <!-- pre>code.language-javascript -->
-  <!-- section.slide>h2{} -->
 
   <section class="slide">
     <h2>Ссылки</h2>
@@ -551,6 +742,9 @@
       </li>
       <li>
         <a href="https://engineering.haus.com/dumb-es6-tricks-53ecadd1b29f">Stupid ES6 tricks</a>
+      </li>
+      <li>
+        <a href="https://github.com/bevacqua/es6">ES6 Overview in 350 Bullet Points</a>
       </li>
     </ul>
   </section>
