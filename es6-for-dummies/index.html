@@ -7,8 +7,7 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="shower/themes/ribbon/styles/screen-4x3.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.11.0/themes/prism.min.css" integrity="sha256-DJJDQyzflMYiUb2jX3gilm9m3gAkHPC4WLv9BAk4rTE="
-    crossorigin="anonymous" />
+  <link rel="stylesheet" href="javascripts/vendors/prismjs.css">
   <style>
     .main {
       display: flex;
@@ -50,13 +49,6 @@
     .slide pre code {
       line-height: 1.6;
       font-family: Consolas, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier, monospace;
-      /* background: #efeff0; */
-    }
-
-    pre[class*=language-] {
-      background: none !important;
-      padding: 0 !important;
-      overflow: initial !important;
     }
   </style>
 </head>
@@ -768,56 +760,10 @@
   <div class="progress"></div>
 
   <script src="shower/shower.min.js"></script>
-  <script>
-    // Run Button
-    const runButton = (elements, _options) => {
-      const defaults = {
-        buttonClassName: "run-button",
-        buttonText: "Выполнить код"
-      }
-      const options = Object.assign({}, defaults, _options);
 
-      [].forEach.call(elements, element => {
-        const code = element.innerText;
-        const button = document.createElement("button");
-        button.type = "button";
-        button.className = options.buttonClassName;
-        button.innerText = options.buttonText;
-        element.parentNode.insertBefore(button, element);
-        button.addEventListener("click", () => {
-          console.log("Running\n---\n" + code + "\n---\nResult:");
-          eval(code);
-        });
-      });
-    };
+  <script src="javascripts/vendors/prism.js"></script>
+  <script src="javascripts/code-hightlight.js"></script>
 
-    // const pre = document.querySelectorAll('pre[data-lang="javascript"]');
-    // runButton(pre);
-  </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.11.0/prism.min.js" integrity="sha256-OyQW1t8DXfIOHVumLRBlVZrqfrPJSvmISfXVBGo7niE="
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.11.0/plugins/line-numbers/prism-line-numbers.min.js" integrity="sha256-JfF9MVfGdRUxzT4pecjOZq6B+F5EylLQLwcQNg+6+Qk="
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.11.0/components/prism-javascript.min.js" integrity="sha256-tLhIAW/D2zypVjXCB31wyVYzDzNzxbGmymQKKTT7P8c="
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.11.0/plugins/highlight-keywords/prism-highlight-keywords.min.js"
-    integrity="sha256-b9CfTkBOR/bKW8Z/tyMfVQaQE0/kU/7NH3quYmbx5m0=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.11.0/plugins/normalize-whitespace/prism-normalize-whitespace.min.js"
-    integrity="sha256-31Ef0tfMJHz4mcBYno6PKR2Iz5qPHPJLxIzej2AGl6c=" crossorigin="anonymous"></script>
-
-  <script>
-    Prism.plugins.NormalizeWhitespace.setDefaults({
-      'remove-trailing': true,
-      'remove-indent': true,
-      'left-trim': true,
-      'right-trim': true,
-      /*'break-lines': 80,
-      'indent': 2,
-      'remove-initial-line-feed': false,
-      'tabs-to-spaces': 4,
-      'spaces-to-tabs': 4*/
-    });
-  </script>
   <!-- Copyright © 2018 Velichko Konstantin. -->
 </body>
 
