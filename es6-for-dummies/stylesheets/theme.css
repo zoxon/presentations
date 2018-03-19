@@ -1,0 +1,48 @@
+.main-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.main-slide__title {
+  flex: 1;
+  text-align: center;
+  margin-top: -10%;
+}
+
+.title_level_1 {
+  font-size: 4em !important;
+}
+
+.title_level_2 {
+  font-size: 3em !important;
+}
+
+.footer {
+  font-size: .6em;
+  color: #3c3d40;
+  text-shadow: 0 1px 0 #8d8e90;
+}
+
+figure img {
+  max-width: 100%;
+  margin: 1em 0;
+}
+
+figure figcaption {
+  font-size: 0.8em;
+}
+
+.image-link {
+  background: none !important;
+  display: inline-block;
+}
+
+.image-link img {
+  max-width: 20vw;
+}
+
+.slide pre code {
+  line-height: 1.6;
+  font-family: Consolas, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier, monospace;
+}
