@@ -491,7 +491,16 @@
     <h2>Параметры по умолчанию</h2>
     <pre>
       <code class="language-javascript">
-        function point(x = 0, y = -1, isFlag = true){
+        // ES5
+        function point(_x, _y, _isFlag) {
+          var x = _x || 0;
+          var y = _y || -1; 
+          var isFlag = _isFlag || true;
+          console.log(x,y, isFlag);
+        }
+
+        // ES6
+        function point(x = 0, y = -1, isFlag = true) {
           console.log(x,y, isFlag);
         }
       </code>
@@ -503,11 +512,34 @@
     <h2>Spread operator</h2>
     <pre>
       <code class="language-javascript">
+        // Математические функции
         Math.max.apply(Math, [2,100,1,6,43]) // 100
         Math.max(...[2,100,1,6,43]) // 100
 
+        // Обьединение
         console.log([...array1, ...array2, ...array3]);
         console.log({...object1, ...object2, ...object3});
+
+        // Клонирование
+        var arr = [1,2,3];
+        var arr2 = [...arr];
+      </code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>Spread operator</h2>
+    <pre>
+      <code class="language-javascript">
+        // Вызов функции
+        function doStuff (x, y, z) { }
+        var args = [0, 1, 2];
+
+        // ES5
+        doStuff.apply(null, args);
+
+        // ES6
+        doStuff(...args);
       </code>
     </pre>
   </section>
