@@ -83,7 +83,7 @@
   </section>
 
   <section class="slide main-slide">
-    <h2 class="main-slide__title title_level_2">React makes rendering of UI as simple as defining a function</h2>
+    <h2 class="main-slide__title title_level_1">Show me the code</h2>
   </section>
 
   <section class="slide">
@@ -100,11 +100,314 @@
         }
 
         ReactDOM.render(
-          &lt;HelloMessage name="John Connor" /&gt;, 
-           document.getElementById("app")
+          &lt;HelloMessage name="John Connor" /&gt;,
+            document.getElementById("app")
         );
       </code>
     </pre>
+  </section>
+
+  <section class="slide main-slide">
+    <h2 class="main-slide__title title_level_1">Компонентный подход</h2>
+  </section>
+
+  <section class="slide">
+    <h2>Компоненты должны обладать следующими качествами:</h2>
+    <ul>
+      <li>
+        <strong>Пригодность для повторного использования.</strong> Как правило, компоненты проектируются с обеспечением возможности
+        их повторного использования в разных сценариях различных приложений. Однако некоторые компоненты создаются специально
+        для конкретной задачи.</li>
+      <li>
+        <strong>Замещаемость.</strong> Компоненты могут без труда заменяться другими подобными компонентами.</li>
+      <li>
+        <strong>Независимость от контекста.</strong> Компоненты проектируются для работы в разных средах и контекстах.</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h2>Компоненты должны обладать следующими качествами:</h2>
+    <ul>
+      <li>
+        <strong>Расширяемость.</strong> Компонент может расширять существующие компоненты для обеспечения нового поведения.</li>
+      <li>
+        <strong>Инкапсуляция.</strong> Компоненты предоставляют интерфейсы, позволяющие вызывающей стороне использовать их функциональность,
+        не раскрывая при этом детали внутренних процессов либо внутренние переменные или состояние.</li>
+      <li>
+        <strong>Независимость.</strong> Компоненты проектируются с минимальными зависимостями от других компонентов.</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h2>Преимущества компонентного архитектурного стиля:</h2>
+    <ul>
+      <li>
+        <strong>Простота развертывания.</strong> Компонент легко заменить или обвновить без вмешательство в систему</li>
+      <li>
+        <strong>Меньшая стоимость.</strong> Использование библиотек компонентов снижает затраты на разработку и обслуживание.</li>
+      <li>
+        <strong>Простота разработки.</strong> Разработка без влияния на другие части системы.</li>
+      <li>
+        <strong>Возможность повторного использования.</strong> Повторное использование снижает затраты на разработку и обслуживание</li>
+      <li>
+        <strong>Упрощение с технической точки зрения.</strong> Компоненты упрощают систему через использование контейнера компонентов
+        и его сервисов.</li>
+    </ul>
+  </section>
+
+  <section class="slide main-slide">
+    <h2 class="main-slide__title title_level_2">Virtual Dom</h2>
+  </section>
+
+  <section class="slide">
+    <h2>Virtual Dom</h2>
+    <ul>
+      <li>Перерисовка очень быстрая</li>
+      <li>Миниимизируются операции с DOM</li>
+      <li>Пакетные операции чтения и записи для достижения максимальной производительности DOM это быстрее, чем ручные операции
+        DOM
+      </li>
+      <li>60fps, даже в UIWebView на iPhone</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h2>Virtual Dom</h2>
+    <pre>
+        <code class="language-html">
+          &lt;ul class="list"&gt;
+            &lt;li&gt;item 1&lt;/li&gt;
+            &lt;li&gt;item 2&lt;/li&gt;
+          &lt;/ul&gt;
+        </code>
+      </pre>
+
+    <pre>
+      <code class="language-javascript">
+        {
+          type: "ul", props: { "class": "list" },
+          children: [
+            { type: "li", props: {}, children: ["item 1"] },
+            { type: "li", props: {}, children: ["item 2"] }
+          ]
+        }
+      </code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>Virtual Dom</h2>
+    <p>ReactElement - это легкое, не имеющее состояния, неизменяемое виртуальное представление элемента DOM. Это виртуальный
+      дом
+    </p>
+  </section>
+
+  <section class="slide">
+    <h2>Virtual Dom</h2>
+    <figure>
+      <figcaption>Virtual Dom: Lets you write HTML as a function of state</figcaption>
+      <img src="images/virtual-dom-update.png" alt="Virtual Dom vs DOM">
+    </figure>
+  </section>
+
+  <section class="slide main-slide">
+    <h2 class="main-slide__title title_level_2">State (Состояние)</h2>
+  </section>
+
+  <section class="slide">
+    <h2>State (Состояние)</h2>
+    <ul>
+      <li>Состояние мутабельно</li>
+      <li>Состояние изолированно (private) для компонента</li>
+      <li>Состояние можно изменить вызвав
+        <code>this.setState()</code>
+      </li>
+      <li>Когда состояние изменяется компонент перерисовывает себя</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h2>Не модифицируйте состояние напрямую</h2>
+    <pre>
+      <code class="language-javascript">
+        // Wrong
+        this.state.comment = 'Hello';
+
+        // Correct
+        this.setState({comment: 'Hello'});
+      </code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>Обновление состояния может быть асинхронным</h2>
+    <pre>
+      <code class="language-javascript">
+        // Wrong
+        this.setState({
+          counter: this.state.counter + this.props.increment,
+        });
+
+        // Correct
+        this.setState((prevState, props) => ({
+          counter: prevState.counter + props.increment
+        }));
+      </code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>Обновление состояния мерджится автоматически</h2>
+    <pre>
+      <code class="language-javascript">
+        state = { posts: [], comments: [] };
+
+        this.setState({ posts: ["Post 1"] });
+        this.setState({ comments: ["Comment 1"] });
+
+        state = {
+          posts: ["Post 1"],
+          comments: ["Comment 1"]
+        }
+      </code>
+    </pre>
+  </section>
+
+  <section class="slide main-slide">
+    <h2 class="main-slide__title title_level_2">Props (Параметры)</h2>
+  </section>
+
+  <section class="slide">
+    <h2>Props (Параметры)</h2>
+    <ul>
+      <li>Параметры имутабельны</li>
+      <li>Основываясь на параметрах компонент перерисовывает себя</li>
+      <li>Параметры передаются от родительского компонента</li>
+      <li>Параметры генерируются родительским компонентом</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h2>Props доступны только для чтения</h2>
+
+    <p>Независимо от того, объявляете ли вы компонент как функцию или класс, он никогда не должен изменять свои собственные
+      props
+    </p>
+
+    <p>Все компоненты React должны действовать как чистые функции в отношении своих props.</p>
+  </section>
+
+  <section class="slide main-slide">
+    <h2 class="main-slide__title title_level_2">Компоненты</h2>
+  </section>
+
+  <section class="slide">
+    <h2>«Глупые» Компоненты</h2>
+    <ul>
+      <li>Максимально переиспользуемые компоенты</li>
+      <li>Они незнают ничего о приложении которое их использует</li>
+      <li>Не привязан к бизнес логике или источнику данных</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h2>«Умные» Компоненты или контейнеры</h2>
+    <ul>
+      <li>Менее универсальны, а зачастую специфичные для приложения</li>
+      <li>Они знают о состоянии на уровне приложения</li>
+      <li>Он может быть привязан напрямую к бизнес логике или источнику данных и реагировать на изменения</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h2>Cоглашению по именованию</h2>
+
+    <p>Всегда начинайте имена компонентов с большой буквы.
+      <br> Например:
+    </p>
+    <ul>
+      <li>
+        <code>&lt;div /&gt;</code> - тег DOM
+      </li>
+      <li>
+        <code>&lt;Welcome /&gt;</code> - компонент
+      </li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h2>Функциональные и Класс Компоненты</h2>
+    <pre>
+        <code class="language-javascript">
+          import React from "react";
+
+          class HelloMessage extends React.Component {
+            constructor()
+            render() {
+              return &lt;div&gt;Hello {this.props.message}&lt;/div&gt;;
+            }
+          }
+
+          function HelloMessage(props) {
+            return &lt;div&gt;Hello {props.message}&lt;/div&gt;;
+          }
+        </code>
+      </pre>
+  </section>
+
+  <section class="slide">
+    <h2>Композиция компонентов</h2>
+    <pre>
+        <code class="language-javascript">
+          function Welcome(props) {
+            return &lt;h1&gt;Hello, {props.name}&lt;/h1&gt;;
+          }
+
+          function App() {
+            return (
+              &lt;div&gt;
+                &lt;Welcome name="Sara" /&gt;
+                &lt;Welcome name="Cahal" /&gt;
+                &lt;Welcome name="Edite" /&gt;
+              &lt;/div&gt;
+            );
+          }
+        </code>
+      </pre>
+  </section>
+
+  <section class="slide main-slide">
+    <h2 class="main-slide__title title_level_1">
+      Жизненный цикл компонента
+    </h2>
+  </section>
+
+  <section class="slide">
+    <h2>Mounting</h2>
+    <ul>
+      <li>constructor(props)</li>
+      <li>componentWillMount()</li>
+      <li>render()</li>
+      <li>componentDidMount()</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h2>Updating</h2>
+    <ul>
+      <li>componentWillReceiveProps(nextProps)</li>
+      <li>shouldComponentUpdate(nextProps, nextState)</li>
+      <li>componentWillUpdate(nextProps, nextState)</li>
+      <li>render()</li>
+      <li>componentDidUpdate(prevProps, prevState, snapshot)</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h2>Unmounting</h2>
+    <ul>
+      <li>componentWillUnmount()</li>
+    </ul>
   </section>
 
   <section class="slide main-slide">
@@ -134,11 +437,11 @@
         &lt;div className="message"&gt;
           Hello {this.props.message}
         &lt;/div&gt;
-        
+
         // compiles into
         React.createElement(
-          "div", 
-          { className: "message" }, 
+          "div",
+          { className: "message" },
           `Hello ${this.props.message}`
         );
       </code>
@@ -151,9 +454,9 @@
     <pre>
       <code class="language-javascript">
         const user = { firstName: "John", lastName: "Connor" };
-        const formatName = ({firstName, lastName}) => 
+        const formatName = ({firstName, lastName}) =>
           `${firstName} ${lastName}`;
-          
+
         const message = (
           &lt;div className="message"&gt;
             Hello, {formatName(user)}!
@@ -208,164 +511,6 @@
       в строку. Это помогает предотвратить XSS (Cross-site scripting) атаки.</p>
   </section>
 
-  <section class="slide main-slide">
-    <h2 class="main-slide__title title_level_1">Компоненты</h2>
-  </section>
-
-  <section class="slide">
-    <h2>Cоглашению по именованию</h2>
-
-    <p>Всегда начинайте имена компонентов с большой буквы.
-      <br> Например:
-    </p>
-    <ul>
-      <li>
-        <code>&lt;div /&gt;</code> - тег DOM
-      </li>
-      <li>
-        <code>&lt;Welcome /&gt;</code> - компонент
-      </li>
-    </ul>
-  </section>
-
-  <section class="slide">
-    <h2>Функциональные и Класс Компоненты</h2>
-    <pre>
-      <code class="language-javascript">
-        import React from "react";
-        
-        class HelloMessage extends React.Component {
-          constructor()
-          render() {
-            return &lt;div&gt;Hello {this.props.message}&lt;/div&gt;;
-          }
-        }
-
-        function HelloMessage(props) {
-          return &lt;div&gt;Hello {props.message}&lt;/div&gt;;
-        }
-      </code>
-    </pre>
-  </section>
-
-  <section class="slide">
-    <h2>Композиция компонентов</h2>
-    <pre>
-      <code class="language-javascript">
-        function Welcome(props) {
-          return &lt;h1&gt;Hello, {props.name}&lt;/h1&gt;;
-        }
-
-        function App() {
-          return (
-            &lt;div&gt;
-              &lt;Welcome name="Sara" /&gt;
-              &lt;Welcome name="Cahal" /&gt;
-              &lt;Welcome name="Edite" /&gt;
-            &lt;/div&gt;
-          );
-        }
-      </code>
-    </pre>
-  </section>
-
-  <section class="slide">
-    <h2>Props доступны только для чтения</h2>
-
-    <p>Независимо от того, объявляете ли вы компонент как функцию или класс, он никогда не должен изменять свои собственные
-      props
-    </p>
-
-    <p>Все компоненты React должны действовать как чистые функции в отношении своих props.</p>
-  </section>
-
-  <section class="slide main-slide">
-    <h2 class="main-slide__title title_level_1">
-      Состояние компонента и события
-    </h2>
-  </section>
-
-  <section class="slide">
-    <h2>Не модифицируйте состояние напрямую</h2>
-    <pre>
-      <code class="language-javascript">
-        // Wrong
-        this.state.comment = 'Hello';
-
-        // Correct
-        this.setState({comment: 'Hello'});
-      </code>
-    </pre>
-  </section>
-
-  <section class="slide">
-    <h2>Обновление состояния может быть асинхронным</h2>
-    <pre>
-      <code class="language-javascript">
-        // Wrong
-        this.setState({
-          counter: this.state.counter + this.props.increment,
-        });
-
-        // Correct
-        this.setState((prevState, props) => ({
-          counter: prevState.counter + props.increment
-        }));
-      </code>
-    </pre>
-  </section>
-
-  <section class="slide">
-    <h2>Обновление состояния мерджится автоматически</h2>
-    <pre>
-      <code class="language-javascript">
-        state = { posts: [], comments: [] };
-        
-        this.setState({ posts: ["Post 1"] });
-        this.setState({ comments: ["Comment 1"] });
-
-        state = { 
-          posts: ["Post 1"],
-          comments: ["Comment 1"]
-        }
-      </code>
-    </pre>
-  </section>
-
-  <section class="slide main-slide">
-    <h2 class="main-slide__title title_level_1">
-      Жизненный цикл компонента
-    </h2>
-  </section>
-
-  <section class="slide">
-    <h2>Mounting</h2>
-    <ul>
-      <li>constructor(props)</li>
-      <li>componentWillMount()</li>
-      <li>render()</li>
-      <li>componentDidMount()</li>
-    </ul>
-  </section>
-
-  <section class="slide">
-    <h2>Updating</h2>
-    <ul>
-      <li>componentWillReceiveProps(nextProps)</li>
-      <li>shouldComponentUpdate(nextProps, nextState)</li>
-      <li>componentWillUpdate(nextProps, nextState)</li>
-      <li>render()</li>
-      <li>componentDidUpdate(prevProps, prevState, snapshot)</li>
-    </ul>
-  </section>
-
-  <section class="slide">
-    <h2>Unmounting</h2>
-    <ul>
-      <li>componentWillUnmount()</li>
-    </ul>
-  </section>
-
   <section class="slide">
     <h2>Ссылки</h2>
     <ul>
@@ -383,6 +528,9 @@
       </li>
       <li>
         <a href="https://medium.com/@divermak/все-фундаментальные-принципы-react-js-собранные-в-одной-статье-ec6a97bfd1bf" target="_blank">Фундаментальные принципы React.js</a>
+      </li>
+      <li>
+        <a href="http://tonsky.me/talks/2015-frontendconf/" target="_blank">Функциональное программирование в браузере</a>
       </li>
 
     </ul>
