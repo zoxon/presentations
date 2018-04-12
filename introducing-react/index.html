@@ -156,6 +156,107 @@
   </section>
 
   <section class="slide main-slide">
+    <h2 class="main-slide__title title_level_1">JSX</h2>
+  </section>
+
+  <section class="slide">
+    <h2>JSX (Java Script и XML)</h2>
+    <p>JSX — это препроцессор, который добавляет синтаксис XML к JavaScript. Вы можете использовать React без JSX, но JSX делает
+      React более элегантным.</p>
+
+    <pre>
+        <code class="language-javascript">
+          React.createElement(
+            type,
+            [props],
+            [...children]
+          )
+        </code>
+      </pre>
+  </section>
+
+  <section class="slide">
+    <h2>JSX vs. Vanilla</h2>
+    <pre>
+        <code class="language-javascript">
+          &lt;div className="message"&gt;
+            Hello {this.props.message}
+          &lt;/div&gt;
+
+          // compiles into
+          React.createElement(
+            "div",
+            { className: "message" },
+            `Hello ${this.props.message}`
+          );
+        </code>
+      </pre>
+  </section>
+
+  <section class="slide">
+    <h2>Выражения в JSX</h2>
+    <p>Вы можете встроить любое выражение JavaScript в JSX, обернув его фигурными фигурными скобками.</p>
+    <pre>
+        <code class="language-javascript">
+          const user = { firstName: "John", lastName: "Connor" };
+          const formatName = ({firstName, lastName}) =>
+            `${firstName} ${lastName}`;
+
+          const message = (
+            &lt;div className="message"&gt;
+              Hello, {formatName(user)}!
+            &lt;/div&gt;
+          );
+        </code>
+      </pre>
+  </section>
+
+  <section class="slide">
+    <h2>JSX — это выражение</h2>
+
+    <p>После компиляции выражения JSX становятся обычными объектами JavaScript.</p>
+    <p>Это означает, что вы можете использовать JSX внутри операторов if или for, назначать его переменным, принимать его как
+      аргументы и возвращать из функций</p>
+  </section>
+
+  <section class="slide">
+    <h2>Определение атрибутов в JSX</h2>
+    <pre>
+        <code class="language-javascript">
+          const image = &lt;img src={user.avatarUrl} /&gt;
+        </code>
+      </pre>
+    <p>Поскольку JSX ближе к JavaScript, чем HTML, React DOM использует соглашение об именах —
+      <b>camelCase</b> вместо имен атрибутов HTML.
+    </p>
+    <p>Например, class становится
+      <code>className</code> в JSX, а
+      <code>tabindex</code> становится
+      <code>tabIndex</code>
+    </p>
+  </section>
+
+  <section class="slide">
+    <h2>Определение дочерних елементов в JSX</h2>
+    <pre>
+        <code class="language-javascript">
+          const message = (
+            &lt;div&gt;
+              &lt;h1&gt;Hello!&lt;/h1&gt;
+              &lt;h2&gt;Good to see you here.&lt;/h2&gt;
+            &lt;/div&gt;
+          );
+        </code>
+      </pre>
+  </section>
+
+  <section class="slide">
+    <h2>JSX предотвращает атаки инъекцией</h2>
+    <p>По умолчанию React DOM исключает любые значения, написанные в JSX, перед их рендерингом. Перед рендерингом все преобразуется
+      в строку. Это помогает предотвратить XSS (Cross-site scripting) атаки.</p>
+  </section>
+
+  <section class="slide main-slide">
     <h2 class="main-slide__title title_level_2">Virtual Dom</h2>
   </section>
 
@@ -410,105 +511,15 @@
     </ul>
   </section>
 
-  <section class="slide main-slide">
-    <h2 class="main-slide__title title_level_1">JSX</h2>
-  </section>
-
   <section class="slide">
-    <h2>JSX (Java Script и XML)</h2>
-    <p>JSX — это препроцессор, который добавляет синтаксис XML к JavaScript. Вы можете использовать React без JSX, но JSX делает
-      React более элегантным.</p>
+    <h2>Жизненный цикл компонента</h2>
 
-    <pre>
-      <code class="language-javascript">
-        React.createElement(
-          type,
-          [props],
-          [...children]
-        )
-      </code>
-    </pre>
-  </section>
-
-  <section class="slide">
-    <h2>JSX vs. Vanilla</h2>
-    <pre>
-      <code class="language-javascript">
-        &lt;div className="message"&gt;
-          Hello {this.props.message}
-        &lt;/div&gt;
-
-        // compiles into
-        React.createElement(
-          "div",
-          { className: "message" },
-          `Hello ${this.props.message}`
-        );
-      </code>
-    </pre>
-  </section>
-
-  <section class="slide">
-    <h2>Выражения в JSX</h2>
-    <p>Вы можете встроить любое выражение JavaScript в JSX, обернув его фигурными фигурными скобками.</p>
-    <pre>
-      <code class="language-javascript">
-        const user = { firstName: "John", lastName: "Connor" };
-        const formatName = ({firstName, lastName}) =>
-          `${firstName} ${lastName}`;
-
-        const message = (
-          &lt;div className="message"&gt;
-            Hello, {formatName(user)}!
-          &lt;/div&gt;
-        );
-      </code>
-    </pre>
-  </section>
-
-  <section class="slide">
-    <h2>JSX — это выражение</h2>
-
-    <p>После компиляции выражения JSX становятся обычными объектами JavaScript.</p>
-    <p>Это означает, что вы можете использовать JSX внутри операторов if или for, назначать его переменным, принимать его как
-      аргументы и возвращать из функций</p>
-  </section>
-
-  <section class="slide">
-    <h2>Определение атрибутов в JSX</h2>
-    <pre>
-      <code class="language-javascript">
-        const image = &lt;img src={user.avatarUrl} /&gt;
-      </code>
-    </pre>
-    <p>Поскольку JSX ближе к JavaScript, чем HTML, React DOM использует соглашение об именах —
-      <b>camelCase</b> вместо имен атрибутов HTML.
-    </p>
-    <p>Например, class становится
-      <code>className</code> в JSX, а
-      <code>tabindex</code> становится
-      <code>tabIndex</code>
-    </p>
-  </section>
-
-  <section class="slide">
-    <h2>Определение дочерних елементов в JSX</h2>
-    <pre>
-      <code class="language-javascript">
-        const message = (
-          &lt;div&gt;
-            &lt;h1&gt;Hello!&lt;/h1&gt;
-            &lt;h2&gt;Good to see you here.&lt;/h2&gt;
-          &lt;/div&gt;
-        );
-      </code>
-    </pre>
-  </section>
-
-  <section class="slide">
-    <h2>JSX предотвращает атаки инъекцией</h2>
-    <p>По умолчанию React DOM исключает любые значения, написанные в JSX, перед их рендерингом. Перед рендерингом все преобразуется
-      в строку. Это помогает предотвратить XSS (Cross-site scripting) атаки.</p>
+    <figure>
+      <figcaption>
+        <a href="https://twitter.com/dan_abramov/status/981712092611989509" target="_blank">React lifecycle methods diagram</a>
+      </figcaption>
+      <img src="images/react-lifecycle-methods.jpg" alt="React lifecycle methods diagram">
+    </figure>
   </section>
 
   <section class="slide">
