@@ -1,0 +1,387 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <title>reveal.js</title>
+
+  <link rel="stylesheet" href="../reveal.js/css/reveal.css">
+  <link rel="stylesheet" href="../reveal.js/css/theme/black.css">
+  <link rel="stylesheet" href="../shared/lib/fonts/source-sans-pro.css">
+  <link rel="stylesheet" href="../shared/lib/logo/spalmalo.css">
+
+  <!-- Theme used for syntax highlighting of code -->
+  <link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">
+
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match(/print-pdf/gi) ? '../reveal.js/css/print/pdf.css' : '../reveal.js/css/print/paper.css';
+    document.getElementsByTagName('head')[0].appendChild(link);
+  </script>
+
+  <style>
+    .image {
+      height: 100%;
+      width: auto;
+
+      border: none !important;
+      background: transparent !important;
+      box-shadow: none !important;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <section data-background="#6428F0">
+        <h2>Как не огрести от верстальщика</h2>
+        <p>Краткое руководство</p>
+      </section>
+
+      <section>
+        <h2>Сверстать можно всё</h2>
+      </section>
+
+      <section>
+        <h2>Веб-дизайнер&nbsp;&mdash;&nbsp;это инженер, а не рисовальщик</h2>
+      </section>
+
+      <section>
+        <h2>Технически недоработанный макет осложняет работу технолога</h2>
+      </section>
+
+      <section>
+        <h2>Создавайте компоненты, а не страницы</h2>
+      </section>
+
+      <section>
+        <h2>Работайте вместе с технологом</h2>
+      </section>
+
+      <section>
+        <h2>Не используйте не подходящие инструменты</h2>
+        <p>Photoshop, Illustrator</p>
+      </section>
+
+      <section>
+        <h2>Техзадание</h2>
+      </section>
+
+      <!-- Макеты -->
+      <section>
+        <section>
+          <h2>Макеты</h2>
+        </section>
+
+        <section>
+          <h2>Макет нужно делать в sRGB</h2>
+        </section>
+
+        <section>
+          <h2>1/1</h2>
+          <p>Макет должен иметь тот размер, в котором его нужно сверстать</p>
+        </section>
+
+        <section>
+          <h2>Режим наложения normal</h2>
+        </section>
+
+        <section>
+          <h2>Одна страница = один макет</h2>
+        </section>
+
+        <section>
+          <h2>Скрытые слои не будут свёрстаны</h2>
+          <p>Eсли в техзадании не указано иное</p>
+        </section>
+
+        <section>
+          <h2>Оставляйте эффекты слоёв</h2>
+        </section>
+
+        <section>
+          <h2>Про корректирующие слои лучше забыть</h2>
+        </section>
+
+        <section>
+          <h2>Прикладывайте все линкованные ресурсы</h2>
+          <p>Картинки, шрифты и скриншоты макета</p>
+        </section>
+      </section>
+
+      <!-- Стайлгайд -->
+      <section>
+        <section>
+          <h2>Стайлгайд</h2>
+        </section>
+
+        <section>
+          <h2>Должен быть стайлгайд</h2>
+        </section>
+
+        <section>
+          <h2>Создали стайлгайд — используйте его</h2>
+        </section>
+
+        <section>
+          <h2>Стайлгайд — это отдельный макет</h2>
+        </section>
+
+        <section>
+          <h2>Не забывайте о состояниях элементов</h2>
+        </section>
+
+        <section>
+          <h2>Ссылки</h2>
+          <p>Для ссылок нужны состояния:</p>
+          <ul>
+            <li>Покой</li>
+            <li>Наведение</li>
+            <li>Клик</li>
+            <li>Уже посещалась (желательно)</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Кнопки</h2>
+          <p>Для кнопок нужны состояния:</p>
+          <ul>
+            <li>Покой</li>
+            <li>Наведение</li>
+            <li>Клик</li>
+            <li>Блокированна</li>
+            <li>Идёт процесс (иногда)</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Текстовые поля</h2>
+          <p>Для текстовых полей форм нужны состояния:</p>
+          <ul>
+            <li>Покой</li>
+            <li>Курсор в поле</li>
+            <li>Блокировано</li>
+            <li>Нет смысла делать «клик» и «наведение»</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Флажки</h2>
+          <p>Для флажков (чекбоксов) и радиокнопок нужны состояния:</p>
+          <ul>
+            <li>Отмечено</li>
+            <li>Не отмечено</li>
+            <li>Блокировано</li>
+            <li>Нет смысла делать «клик» и «наведение»</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Типографика</h2>
+          <p>Для типографики нужно показать, как минимум, следующее:</p>
+          <ul>
+            <li>Заголовки с 1 по 4</li>
+            <li>Маркированный и нумерованный список</li>
+            <li>Блочная цитата</li>
+            <li>Таблица</li>
+            <li>Чередовать их с параграфами</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Типографика</h2>
+          <p>Верстальщику важно увидеть все вертикальные расстояния</p>
+        </section>
+      </section>
+
+      <!-- Модульные сетки -->
+      <section>
+        <section>
+          <h2>Модульные сетки</h2>
+        </section>
+
+        <section>
+          <h2>Используйте модульные сетки</h2>
+        </section>
+
+        <section>
+          <h2>Не нарушайте сетку</h2>
+        </section>
+
+        <section>
+          <h2>Идеал модульной сетки — 12 колонок</h2>
+          <p>12 делится на 2, 3, 4 и 6</p>
+        </section>
+
+        <section>
+          <h2>Между колонками может быть пустое место, пропорциональное ширине колонки</h2>
+        </section>
+      </section>
+
+      <!-- Текст, Шрифты -->
+      <section>
+        <section>
+          <h2>Текст и Шрифты</h2>
+        </section>
+
+        <section>
+          <h2>Используйте легальные шрифты</h2>
+        </section>
+
+        <section>
+          <h2>Используйте проверенные шрифты</h2>
+        </section>
+
+        <section>
+          <h2>PX</h2>
+          <p>Размеры шрифтов и интерлиньяж указывайте целыми числами в пикселях</p>
+        </section>
+
+        <section>
+          <h2>[14px, 16px, 22px, 26px, 32px]</h2>
+          <p>Выберите несколько размеров шрифта и придерживайтесь их</p>
+        </section>
+
+        <section>
+          <h2>Высота текста</h2>
+
+          <p>Вертикальные границы текстового блока проходят по границам «высоты линии», а не по границам букв первой и последней
+            строк
+          </p>
+        </section>
+
+        <section data-background="#fff">
+          <img class="image" src="images/font-size-and-line-height.svg" alt="CSS font-size and line-height">
+        </section>
+
+        <section>
+          <h2>Избегайте менять кернинг и трекинг</h2>
+        </section>
+
+        <section>
+          <h2>Интерлиньяж не должен быть меньше размера шрифта</h2>
+        </section>
+
+        <section>
+          <h2>В вебе нет кроссбраузерных переносов</h2>
+        </section>
+
+        <section>
+          <h2>Не используйте «маркерное выделение текста»</h2>
+        </section>
+
+        <section>
+          <img class="image" src="images/text-marker-select.svg" alt="Marker text selection">
+        </section>
+      </section>
+
+      <!-- Блоки -->
+      <section>
+        <h2>Блоки</h2>
+        <ul>
+          <li>Думайте о блоках и потоках блоков</li>
+          <li>Всегда думайте о переполнении блока текстом или другими блоками. Всегда.</li>
+          <li>У блоков есть внутренние и внешние отступы</li>
+          <li>Однотипные блоки должны иметь однотипные свойства</li>
+        </ul>
+      </section>
+
+      <!-- Векторная графика -->
+      <section>
+        <h2>Векторная графика (часть 1)</h2>
+        <ul>
+          <li>Используйте векторную графику везде, где это возможно</li>
+          <li>Создавайте векторную графику в векторных редакторах</li>
+          <li>Создавайте векторную графику в отдельных файлах</li>
+          <li>Рисуйте векторные формы вместо работы кистью</li>
+          <li>Предоставляйте векторную графику в том её размере, в котором она использована в макете. Обязательно! </li>
+          <li>Не накладывайте на векторные изображения в PSD-макетах корректирующие слои, маски, эффекты</li>
+          <li>Выравнивайте точки в кривых по пиксельной сетке («snap to pixel»)</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Векторная графика (часть 2)</h2>
+        <ul>
+          <li>Артборд должен быть подогнан по габаритам фигуры</li>
+          <li>Недопустимы режимы наложения, отличные от normal</li>
+          <li>Всё, что может быть слито в единую форму, должно быть слито</li>
+          <li>Удаляйте всё лишнее из векторных картинок</li>
+          <li>Избегайте наложения эффектов и трансформаций</li>
+          <li>Избегайте градиентов и теней</li>
+          <li>Для форм с заливкой не используйте обводку того же цвета, что и заливка</li>
+          <li>Не комбинируйте в макете слои со вставленной векторной графикой с элементами, нарисованными в макете</li>
+        </ul>
+      </section>
+
+      <!-- Адаптивность, адаптивная графика -->
+      <section>
+        <h2>Адаптивность, адаптивная графика</h2>
+        <ul>
+          <li>Выберите 2-3 брейкпоинта и создавайте макеты для них (Обычно 768, 992, 1200)</li>
+          <li>Уточняйте в техническом задании как ведет себя дизайн на разных брейкпоинтах</li>
+          <li>Ретинизируемые растровые изображения в оригинале должны быть в 2-3 раза крупнее, чем видно в макете</li>
+          <li>Мы можем показывать разные изображения на разных размерах экранов штатными методами</li>
+          <li>Хотите сами подготовить растровую графику — посоветуйтесь с верстальщиком</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Разное</h2>
+        <ul>
+          <li>Анимация может повредить проекту с точки зрения технологии реализации</li>
+          <li>Реализация нестандартных элементов форм увеличивает сроки проекта</li>
+          <li>Не рисуйте векторные иконки в Sketch</li>
+          <li>Не накладывайте полупрозрачные слои на автопроигрываемое видео</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Неприятные для технолога мелочи</h2>
+        <ul>
+          <li>Отсутствие структуры слоёв</li>
+          <li>Большие части макета в смарт-объектах</li>
+          <li>Изменение цвета объектов или текста при помощи прозрачности</li>
+          <li>Изменения вида векторных объектов эффектами Photoshop</li>
+          <li>Набор текстовых блоков КАПСОМ вместо использования «All Caps»</li>
+          <li>Заголовок текстового блока и его контентный текст в одном текстовом слое</li>
+          <li>Блокированные папки и слои</li>
+        </ul>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="../reveal.js/lib/js/head.min.js"></script>
+  <script src="../reveal.js/js/reveal.js"></script>
+
+  <script>
+    // More info about config & dependencies:
+    // - https://github.com/hakimel/reveal.js#configuration
+    // - https://github.com/hakimel/reveal.js#dependencies
+    Reveal.initialize({
+      history: true,
+      dependencies: [
+        { src: '../reveal.js/plugin/markdown/marked.js' },
+        { src: '../reveal.js/plugin/markdown/markdown.js' },
+        { src: '../reveal.js/plugin/notes/notes.js', async: true },
+        {
+          src: '../reveal.js/plugin/highlight/highlight.js',
+          async: true,
+          callback: function () {
+            hljs.initHighlightingOnLoad();
+          }
+        }
+      ]
+    });
+  </script>
+</body>
+
+</html>
