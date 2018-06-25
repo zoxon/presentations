@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Введение в Vue.js</title>
+
+  <link rel="stylesheet" href="../shared/shower/themes/ribbon/styles/screen-4x3.css">
+  <link rel="stylesheet" href="../shared/javascripts/vendors/prismjs.css">
+  <link rel="stylesheet" href="../shared/stylesheets/theme.css">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16x16.png">
+  <link rel="manifest" href="favicons/site.webmanifest">
+  <link rel="mask-icon" href="favicons/safari-pinned-tab.svg" color="#4dba87">
+  <link rel="shortcut icon" href="favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-config" content="favicons/browserconfig.xml">
+  <meta name="theme-color" content="#ffffff">
+</head>
+
+<body class="shower list">
+
+  <header class="caption">
+    <h1>Введение в Vue.js</h1>
+    <p>Обзор базовых возможностей React</p>
+  </header>
+
+  <section class="slide main-slide">
+    <img src="images/vue.svg" alt="Vue.js logo">
+  </section>
+
+  <!-- Что такое Vue.js? -->
+  <section class="slide">
+    <h2>Что такое Vue.js?</h2>
+    <p>
+      <b>Vue</b> (произносится /vjuː/, примерно как view) — это прогрессивный фреймворк для создания пользовательских интерфейсов
+    </p>
+    <ul>
+      <li>Реактивный</li>
+      <li>Доступный</li>
+      <li>Разносторонний</li>
+      <li>Производительный</li>
+      <li>Поддерживаемый</li>
+      <li>Тестируемый</li>
+    </ul>
+  </section>
+
+  <!-- Hello world -->
+  <section class="slide">
+    <h2>
+      <a href="https://jsfiddle.net/50wL7mdz/395136/">Hello world</a>
+    </h2>
+    <pre>
+      <code class="language-html">
+        &lt;div id="app"&gt;{{ message }}&lt;/div&gt;
+
+        &lt;script src="https://unpkg.com/vue"&gt;&lt;/script&gt;
+        &lt;script&gt;
+          new Vue({
+            el: '#app',
+            data: {
+              message: 'Hello Vue.js!'
+            }
+          });
+        &lt;/script&gt;
+      </code>
+    </pre>
+  </section>
+
+  <!-- Концепции Vue.js -->
+  <secton class="slide">
+    <h2>Концепции Vue.js</h2>
+    <p>Основными концепциями Vue являются:</p>
+    <ul>
+      <li>Конструктор</li>
+      <li>Директивы</li>
+      <li>Компоненты</li>
+      <li>Переходы</li>
+      <li>Фильтры</li>
+    </ul>
+  </secton>
+
+  <!-- Конструктор -->
+  <section class="slide  main-slide">
+    <h2 class="main-slide__title title_level_1">Конструктор</h2>
+  </section>
+
+  <section class="slide">
+    <h2>Конструктор</h2>
+    <p>Работа с Vue.js начинается с создания нового инстанса new Vue. </p>
+    <pre>
+      <code class="language-javascript">
+        new Vue({
+          el: '#app',
+          template: `<div>{{ message }}</div>`,
+          data: {},
+          computed: {}
+          methods: {}
+        });
+      </code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>Опции — данные</h2>
+    <ul>
+      <li>
+        <b>data</b> — Объект с данными экземпляра Vue. Vue рекурсивно переводит его поля в геттеры/сеттеры, и он становится
+        «реактивным»
+      </li>
+      <li>
+        <b>props</b> — Список или хэш атрибутов, по которым разрешено получение данных от родительского компонента</li>
+      <li>
+        <b>computed</b> — Вычисляемые свойства, которые будут подмешаны к экземпляру Vue</li>
+      <li>
+        <b>methods</b> — Методы, которые будут подмешаны к экземпляру Vue</li>
+      <li>
+        <b>watch</b> — Объект, ключи которого — выражения для наблюдения, а значения — коллбэки, вызываемые при их изменении</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h2>Опции — DOM</h2>
+    <ul>
+      <li>
+        <b>el</b> — Указывает, на какой существующий DOM-элемент смонтировать экземпляр Vue (string | HTMLElement)</li>
+      <li>
+        <b>template</b> — Строковый шаблон с разметкой для экземпляра Vue. Этот шаблон заменит элемент в точке монтирования</li>
+      <li>
+        <b>render</b> — Альтернатива строковым шаблонам, позволяющая задействовать все алгоритмические возможности JavaScript.
+        <code>Render</code>-функция получает первым аргументом метод
+        <code>createElement</code>, нужный для создания
+        <code>VNode</code>-ов.</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h2>Опции —
+      <a href="https://ru.vuejs.org/v2/guide/instance.html#Диаграмма-жизненного-цикла">хуки жизненного цикла</a>
+    </h2>
+    <ul>
+      <li>
+        <b>beforeCreate</b> — Вызывается после инициализации экземпляра
+      </li>
+      <li>
+        <b>created</b> — Вызывается после создания экземпляра
+      </li>
+      <li>
+        <b>beforeMount</b> — Вызывается перед началом монтирования
+        <code>render</code>.
+      </li>
+      <li>
+        <b>mounted</b> — Вызывается сразу после того как экземпляр был смонтирован
+      </li>
+      <li>
+        <b>beforeUpdate</b> — Вызывается при изменении данных перед тем, как DOM будет обновляться
+      </li>
+      <li>
+        <b>updated</b> — Вызывается после того, как виртуальный DOM был обновлён из-за изменения данных</li>
+      <li>
+        <b>beforeDestroy</b> — Вызывается перед уничтожением экземпляра Vue</li>
+      <li>
+        <b>destroyed</b> — Вызывается после уничтожения экземпляра Vue
+      </li>
+    </ul>
+  </section>
+
+  <!-- Директивы -->
+  <section class="slide  main-slide">
+    <h2 class="main-slide__title title_level_1">Директивы</h2>
+  </section>
+
+  <section class="slide">
+    <h2>Директивы</h2>
+    <p>
+      <b>Директивы</b> — специальные атрибуты для добавления элементам html дополнительной функциональности.
+    </p>
+  </section>
+
+  <section class="slide">
+    <h2>v-bind (cокращение: ":")</h2>
+    <p>Динамически связывает атрибуты тега или входной параметр компонента с выражением</p>
+    <pre>
+      <code class="language-html">
+        &lt;img v-bind:src="imageSrc"&gt;
+        &lt;img :src="imageSrc"&gt;
+        &lt;img :src="'/path/to/images/' + fileName"&gt;
+        &lt;div :class="{ red: isRed }"&gt;&lt;/div&gt;
+        &lt;div :class="[classA, classB]"&gt;&lt;/div&gt;
+        &lt;div :style="{ fontSize: size + 'px' }"&gt;&lt;/div&gt;
+        &lt;div v-bind="{ id: someProp, 'other-attr': prop2 }"&gt;&lt;/div&gt;
+        &lt;my-component :prop="someThing"&gt;&lt;/my-component&gt;
+        &lt;child-component v-bind="$props"&gt;&lt;/child-component&gt;
+      </code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>v-for</h2>
+    <p>Циклично проходит массив объектов</p>
+    <pre>
+      <code class="language-html">
+        &lt;div v-for="item in items" :key="item.id"&gt;
+          {{ item.text }}
+        &lt;/div&gt;
+
+        &lt;div v-for="(item, index) in items"&gt;&lt;/div&gt;
+        &lt;div v-for="(val, key) in object"&gt;&lt;/div&gt;
+        &lt;div v-for="(val, key, index) in object"&gt;&lt;/div&gt;
+      </code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>v-on (cокращение: @)</h2>
+    <p>Cвязывает слушателя события с элементом</p>
+    <pre>
+      <code class="language-html">
+        &lt;button v-on:click="doThis"&gt;&lt;/button&gt;
+        &lt;button v-on:click="doThat('hello', $event)"&gt;&lt;/button&gt;
+        &lt;button @click="doThis"&gt;&lt;/button&gt;
+        &lt;button @click.stop="doThis"&gt;&lt;/button&gt;
+        &lt;button @click.prevent="doThis"&gt;&lt;/button&gt;
+        &lt;input @keyup.enter="onEnter"&gt;
+      </code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>v-model</h2>
+    <p>Двусторонним образом связывает элемент ввода данных или компонент с переменной, только для input, select, textarea, компонентов</p>
+    <pre>
+      <code class="language-html">
+        &lt;input v-model="message" placeholder="Отредактируй меня"&gt;
+        &lt;p&gt;Введённое сообщение: {{ message }}&lt;/p&gt;
+      </code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>v-if, v-else, v-else-if</h2>
+    <pre>
+      <code class="language-html">
+        &lt;div v-if="type === 'A'"&gt;
+          A
+        &lt;/div&gt;
+        &lt;div v-else-if="type === 'B'"&gt;
+          B
+        &lt;/div&gt;
+        &lt;div v-else-if="type === 'C'"&gt;
+          C
+        &lt;/div&gt;
+        &lt;div v-else&gt;
+          Не A/B/C
+        &lt;/div&gt;
+      </code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>Другие директивы</h2>
+    <ul>
+      <li>
+        <code> v-html </code> - Управляет HTML-содержимым элемента (innerHTML).
+      </li>
+      <li>
+        <code>v-text</code> - обновляет textContent элемента</li>
+      <li>
+        <code>v-show</code> - переключает видимость элемента, изменяя свойство CSS display
+      </li>
+      <li>
+        <code>v-cloak</code> - прячет «усатые» выражения, пока не подтянулись данные
+      </li>
+      <li>
+        <code>v-once</code> - рендерит элемент только вначале и больше не следит за ним</li>
+      <li>
+        <code>v-pre</code> - не компилирует элемент и его дочерние элементы</li>
+    </ul>
+  </section>
+
+  <!-- Компоненты -->
+  <section class="slide  main-slide">
+    <h2 class="main-slide__title title_level_1">Компоненты</h2>
+  </section>
+
+  <section class="slide">
+    <h2>Компоненты</h2>
+    <p>Компоненты помогают расширить основные html элементы и внедрить переиспользуемый код. Компоненты — это переиспользуемые
+      экземпляры Vue со своим именем</p>
+
+    <p>Поскольку компоненты это переиспользуемые экземпляры Vue, они принимают те же опции что и new Vue, такие как data, computed,
+      watch, methods, и хуки жизненного цикла. Единственными исключениями являются несколько специфичных для корневого экземпляра
+      опций, например el.</p>
+  </section>
+
+  <section class="slide">
+    <h2>Организация компонентов</h2>
+    <p>Обычно приложение организуется в виде дерева вложенных компонентов:</p>
+    <figure>
+      <img src="images/components.png" alt="Vue.js components tree">
+    </figure>
+  </section>
+
+  <section class="slide">
+    <h2>Ограничения</h2>
+    <ul>
+      <li>Свойство
+        <code>data</code> должно быть функцией</li>
+      <li>Один корневой элемент</li>
+      <li>Коипонент требует регистрации</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h2>Регистрация компонентов</h2>
+    <p>Чтобы использовать компоненты в шаблонах, они должны быть зарегистрированы. Есть два типа регистрации компонентов:
+      <b>глобальная</b>
+      и
+      <b>локальная</b>.</p>
+    <pre>
+      <code class="language-javascript">
+        Vue.component('my-component-name', {});
+
+        new Vue({
+          components: {
+            "my-component-name": function() {}
+          }
+        });
+      </code>
+    </pre>
+  </section>
+
+  <!-- Слоты -->
+  <section class="slide main-slide">
+    <h2 class="main-slide__title title_level_1">Слоты</h2>
+  </section>
+
+  <section class="slide">
+    <h2>Слоты</h2>
+    <p>Как и с обычными HTML-элементами, часто бывает полезным передать компоненту содержимое, например:</p>
+
+    <pre>
+      <code class="language-html">
+        &lt;Alert&gt;
+          Произошло что-то плохое.
+        &lt;/Alert&gt;
+      </code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>&lt;slot /&gt;</h2>
+    <pre>
+      <code class="language-javascript">
+        Vue.component('alert-box', {
+          template: `
+            &lt;div class="demo-alert-box"&gt;
+              &lt;strong&gt;Ошибка!&lt;/strong&gt;
+              &lt;slot&gt;&lt;/slot&gt;
+            &lt;/div&gt;
+        `});
+      </code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>Именованные слоты</h2>
+    <p>Бывают случаи, когда полезно иметь несколько слотов:</p>
+    <pre>
+      <code class="language-html">
+        &lt;div class="page"&gt;
+          &lt;header class="page__header"&gt;
+            &lt;slot name="header" /&gt;
+          &lt;/header&gt;
+          &lt;main class="page__main"&gt;
+            &lt;slot /&gt;
+          &lt;/main&gt;
+          &lt;footer class="page__footer"&gt;
+            &lt;slot name="footer" /&gt;
+          &lt;/footer&gt;
+        &lt;/div&gt;
+      </code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>Именованные слоты</h2>
+    <pre>
+      <code class="language-html">
+        &lt;Page&gt;
+          &lt;template slot="header"&gt;
+            &lt;h1&gt;Здесь мог быть заголовок страницы&lt;/h1&gt;
+          &lt;/template&gt;
+
+          &lt;p&gt;Параграф для основного контента.&lt;/p&gt;
+          &lt;p&gt;И ещё один.&lt;/p&gt;
+
+          &lt;p slot="footer"&gt;Некая контактная информация&lt;/p&gt;
+        &lt;/Page&gt;
+      </code>
+    </pre>
+  </section>
+
+  <!-- Анимированные Переходы -->
+  <section class="slide main-slide">
+    <h2 class="main-slide__title title_level_1">Анимированные Переходы</h2>
+  </section>
+
+  <section class="slide">
+    <h2>&lt;transition /&gt;</h2>
+    <p>Vue располагает компонентом-обёрткой transition, позволяющим анимировать появление и исчезновение элемента или компонента
+      в следующих случаях:</p>
+    <ul>
+      <li>Условный рендеринг (используя v-if) </li>
+      <li>Условное отображение (используя v-show) </li>
+      <li>Динамические компоненты </li>
+      <li>Корневые элементы компонентов</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h2>&lt;transition /&gt;</h2>
+    <pre>
+      <code class="language-html">
+        &lt;transition name="fade"&gt;
+          &lt;p v-if="show"&gt;привет&lt;/p&gt;
+        &lt;/transition&gt;
+
+        &lt;style&gt;
+          .fade-enter-active, .fade-leave-active {
+            transition: opacity .5s;
+          }
+          .fade-enter, .fade-leave-to {
+            opacity: 0;
+          }
+        &lt;/style&gt;
+      </code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>&lt;transition /&gt;</h2>
+    <figure>
+      <img src="images/transition.png" alt="Vue.js transition state">
+    </figure>
+  </section>
+
+  <!-- Динамическое переключение компонентов -->
+  <section class="slide  main-slide">
+    <h2 class="main-slide__title title_level_1">Динамическое переключение компонентов</h2>
+  </section>
+
+  <section class="slide">
+    <h2>Динамическое переключение компонентов</h2>
+    <p>Иногда бывает полезно динамически переключаться между компонентами, например в интерфейсе с вкладками</p>
+    <pre>
+      <code class="language-html">
+        &lt;!--
+          Компонент меняется при изменении
+          currentTabComponent
+        --&gt;
+        &lt;component v-bind:is="currentTabComponent" /&gt;
+      </code>
+    </pre>
+  </section>
+
+  <!-- Фильтры -->
+  <section class="slide main-slide">
+    <h2 class="main-slide__title title_level_1">Фильтры</h2>
+  </section>
+
+  <section class="slide">
+    <h2>Фильтры</h2>
+    <p>Для распространённых задач форматирования текста во Vue используются фильтры</p>
+
+    <pre>
+      <code class="language-html">
+        &lt;!-- mustache --&gt;
+        {{ message | capitalize }}
+
+        &lt;!-- v-bind --&gt;
+        &lt;div v-bind:id="rawId | formatId"&gt;&lt;/div&gt;
+      </code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>Фильтры - регистрация</h2>
+    <pre>
+      <code class="language-javascript">
+        new Vue({
+          filters: {
+            capitalize(value) {}
+          }
+        });
+
+        Vue.filter("capitalize", function (value) {});
+      </code>
+    </pre>
+  </section>
+
+  <!-- Разное -->
+  <section class="slide main-slide">
+    <h2 class="main-slide__title title_level_1">Разное</h2>
+  </section>
+
+  <!-- Плагины -->
+  <section class="slide">
+    <h2>Плагины</h2>
+    <ul>
+      <li>
+        <code>vue-router</code> - официальный простой и мощный роутер
+      </li>
+      <li>
+        <code>vuex</code> - централизованное хранилище состояния приложения
+      </li>
+      <li>
+        <code>vuex-router-sync</code> - дружит vuex и vue-router
+      </li>
+      <li>
+        <code>vue-i18n</code> - интернациализация
+      </li>
+    </ul>
+  </section>
+
+  <!-- Инструменты -->
+  <section class="slide">
+    <h2>Инструменты</h2>
+    <ul>
+      <li>
+        <code>vue-cli</code> - генератор приложения</li>
+      <li>
+        <code>vue-loader</code> - официальный лоадер для webpack
+      </li>
+      <li>
+        <code>vue-devtools</code> - расширение для браузера упрощающее отладку
+      </li>
+      <li>
+        <code>vetur</code> - плагин для Visual Studio Code
+      </li>
+    </ul>
+  </section>
+
+  <!-- Ссылки -->
+  <section class="slide">
+    <h2>Ссылки</h2>
+    <ul>
+      <li>
+        <a href="https://ru.vuejs.org/index.html" target="_blank">Vue.js</a>
+      </li>
+      <li>
+        <a href="https://router.vuejs.org/ru/" target="_blank">Vue Router</a>
+      </li>
+      <li>
+        <a href="https://vuex.vuejs.org/ru/" target="_blank">Vuex</a>
+      </li>
+      <li>
+        <a href="https://codesandbox.io/s/o78v4j7pl9" target="_blank">VueBlog</a>
+      </li>
+      <li>
+        <a href="github.com/vuejs/awesome-vue" target="_blank">Awesome Vue.js</a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="slide" id="see-more">
+    <h2 class="shout">
+      <a href="https://zoxon.github.io/presentations/introducing-react/" target="_blank">git.io/introVue</a>
+    </h2>
+    <style>
+      #see-more h2 {
+        font-size: 100px
+      }
+
+      #see-more img {
+        width: 0.72em;
+        height: 0.72em;
+      }
+    </style>
+  </section>
+
+  <div class="progress"></div>
+
+  <script src="../shared/shower/shower.min.js"></script>
+
+  <script src="../shared/javascripts/vendors/prism.js"></script>
+  <script src="../shared/javascripts/code-hightlight.js"></script>
+
+  <!-- Copyright © 2018 Velichko Konstantin. -->
+</body>
+
+</html>
